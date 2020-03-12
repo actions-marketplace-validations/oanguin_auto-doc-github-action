@@ -13,6 +13,8 @@ jobs:
       - name: Generate open api specifications
         uses: ./
         id: generate-doc
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Print the URL for geenerate documentation
         if: steps.generate-doc.outputs.generated-doc-url != ''
-        run: echo ${{ steps.generate-doc.generated-doc-url}}
+        run: echo ${{ steps.generate-doc.outputs.generated-doc-url}}
