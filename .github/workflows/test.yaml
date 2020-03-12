@@ -9,12 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get the sources
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Generate open api specifications
-        id: generate-doc
         uses: ./
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        id: generate-doc
       - name: Print the URL for geenerate documentation
         if: steps.generate-doc.outputs.generated-doc-url != ''
         run: echo ${{ steps.generate-doc.generated-doc-url}}
