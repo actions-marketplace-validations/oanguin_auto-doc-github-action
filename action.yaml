@@ -1,0 +1,9 @@
+name: 'Auto Doc Action'
+description: 'Create documentation based on open api spec'
+author: 'Oneal Anguin'
+outputs:
+  generated-doc-url:
+    decription: 'The path to the newly generated document'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
