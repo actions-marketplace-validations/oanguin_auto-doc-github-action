@@ -1,9 +1,9 @@
-FROM alpine:3.10
+FROM node:8.10.0-alpine
 
 LABEL "com.github.actions.name"="Auto Doc Generation"
 LABEL "com.github.actions.description"="Auto generate documentation based on open api specifications"
 
-RUN apk add --no-cache bash npm
+RUN apk add --no-cache bash
 RUN sudo npm install redoc-cli -g
 
 COPY entrypoint.sh /
