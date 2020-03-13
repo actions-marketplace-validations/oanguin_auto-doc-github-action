@@ -1,19 +1,9 @@
 name: 'Auto Doc Action'
 description: 'Create documentation based on open api spec'
 author: 'Oneal Anguin'
-inputs:
-  repo-user:
-    decription: The user to be used to go actions
-    required: true
-  repo-token:
-    description: The token to authenticate the user
-    required: true
 outputs:
   generated-doc-url:
     decription: 'The path to the newly generated document'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - {{ inputs.repo-user   }}
-    - {{ inputs.repo-token  }}

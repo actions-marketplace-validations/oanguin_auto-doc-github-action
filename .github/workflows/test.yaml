@@ -10,9 +10,6 @@ jobs:
       - name: Generate open api specifications
         uses: ./
         id: generate-doc
-        with:
-          repo-user: ${{ secrets.BOT_USER }}
-          repo-token: ${{ secrets.BOT_TOKEN }}
-      - name: Print the URL for geenerate documentation
+      - name: Print the URL for generate documentation
         if: steps.generate-doc.outputs.generated-doc-url != ''
         run: echo ${{ steps.generate-doc.outputs.generated-doc-url}}
