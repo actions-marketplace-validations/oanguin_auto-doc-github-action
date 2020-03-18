@@ -17,3 +17,7 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{inputs.user-name}}
+    - ${{inputs.user-password}}
+    - ${{inputs.user-email}}
