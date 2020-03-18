@@ -1,14 +1,14 @@
 #!/bin/bash
 set -u
 
-tag = $(jq --raw-output .release.tag_name $GITHUB_EVENT_PATH)
+tag=$(jq --raw-output .release.tag_name $GITHUB_EVENT_PATH)
 
-repo_url = $(jq --raw-output .repository.html_url $GITHUB_EVENT_PATH)
+repo_url=$(jq --raw-output .repository.html_url $GITHUB_EVENT_PATH)
 
-file_tag_version = ""
+file_tag_version=""
 
 if [-z "$tag"]; then
-    file_tag_version = ".v${tag}"
+    file_tag_version=".v${tag}"
 fi
 
 doc_urls=()
