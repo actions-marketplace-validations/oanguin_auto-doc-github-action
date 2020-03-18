@@ -8,8 +8,12 @@ jobs:
       - name: Get the sources
         uses: actions/checkout@v2
       - name: Generate open api specifications
-        uses: ./
         id: generate-doc
+        uses: ./
+        with:
+          user-name: ${{ secrets.BOT_USERNAME}}
+          user-password: ${{ secrets.BOT_PASSWORD}}
+          user-email: ${{ secrets.BOT_EMAIL}}
       - name: Print the URL for generate documentation
         if: steps.generate-doc.outputs.generated-doc-url != ''
         run: echo ${{ steps.generate-doc.outputs.generated-doc-url}}
