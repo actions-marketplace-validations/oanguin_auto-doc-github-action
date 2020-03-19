@@ -22,9 +22,9 @@ do
 done
 
 echo "Configuring git"
-user-name      = $1
-user-password  = $2
-user-email     = $3
+user-name=$1
+user-password=$2
+user-email=$3
 
 git config --local user.name "${user-name}"
 git config --local user.email "${user-email}"
