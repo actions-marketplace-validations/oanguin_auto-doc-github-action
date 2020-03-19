@@ -22,19 +22,19 @@ do
 done
 
 echo "Configuring git"
-user-name=$1
-user-password=$2
-user-email=$3
+user_name=$1
+user_password=$2
+user_email=$3
 
-git config --local user.name "${user-name}"
-git config --local user.email "${user-email}"
+git config --local user.name "${user_name}"
+git config --local user.email "${user_email}"
 
 echo "Committing changes"
 git add .
 git diff --cached HEAD --quiet || git commit -m "Generated documentation"
 
 echo "Pushing changes"
-git push https://${user-name}:${user-password}@github.com/${GITHUB_REPOSITORY}.git HEAD:master
+git push https://${user_name}:${user_password}@github.com/${GITHUB_REPOSITORY}.git HEAD:master
 
 for doc_url in doc_urls
 do
