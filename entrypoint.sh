@@ -1,23 +1,17 @@
 #!/bin/bash
 set -u
 
-tag=$(jq --raw-output .release.tag_name $GITHUB_EVENT_PATH)
-
 repo_url=$(jq --raw-output .repository.html_url $GITHUB_EVENT_PATH)
 
-file_tag_version=""
+file_tag_version=$(jq 'if .release.tag_name != null then '\''v'\''+.release.tag_name else "" end' $GITHUB_EVENT_PATH)
 
-if [ -n "$tag" && -n "$tag" == null]; then
-    file_tag_version=".v${tag}"
-    echo "Not Null"
-fi
 
 doc_urls=()
 
 for f in schemas/*
 do
     file="$(basename -- $f)"
-    outputfile="docs/${file}${file_tag_version}.html"
+    outputfile="docs/${file%.*}${file_tag_version}.html"
     redoc-cli bundle "schemas/${file}" --output ${outputfile} 
     doc_urls+=outputfile
 done
