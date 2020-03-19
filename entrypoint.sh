@@ -43,5 +43,4 @@ done
 
 echo "::set-output name=generated-doc-url::${repo_url}/docs"
 
-echo "Finished creatings docs"
 exit 0
