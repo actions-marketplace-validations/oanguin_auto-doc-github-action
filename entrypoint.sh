@@ -34,6 +34,7 @@ git add .
 git diff --cached HEAD --quiet || git commit -m "Generated documentation"
 
 echo "Pushing changes"
+git pull
 git push https://${user_name}:${user_password}@github.com/${GITHUB_REPOSITORY}.git HEAD:master
 
 for doc_url in doc_urls
