@@ -7,8 +7,9 @@ repo_url=$(jq --raw-output .repository.html_url $GITHUB_EVENT_PATH)
 
 file_tag_version=""
 
-if [ -n "$tag" ]; then
+if [ -n "$tag" && -n "$tag" == null]; then
     file_tag_version=".v${tag}"
+    echo "Not Null"
 fi
 
 doc_urls=()
