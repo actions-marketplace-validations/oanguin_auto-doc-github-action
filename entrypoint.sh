@@ -3,7 +3,7 @@ set -u
 
 repo_url=$(jq --raw-output .repository.html_url $GITHUB_EVENT_PATH)
 
-file_tag_version=$(jq 'if .release.tag_name != null then '\''v'\''+.release.tag_name else "" end' $GITHUB_EVENT_PATH)
+file_tag_version=$(jq 'if .release.tag_name != null then "v"+.release.tag_name else "" end' $GITHUB_EVENT_PATH)
 
 
 doc_urls=()
