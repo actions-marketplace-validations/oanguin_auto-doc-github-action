@@ -7,7 +7,7 @@ repo_url=$(jq --raw-output .repository.html_url $GITHUB_EVENT_PATH)
 
 file_tag_version=""
 
-if [-z "$tag"]; then
+if [ -n "$tag" ]; then
     file_tag_version=".v${tag}"
 fi
 
@@ -16,7 +16,7 @@ doc_urls=()
 for f in schemas/*
 do
     file="$(basename -- $f)"
-    outputfile = "docs/${file}${file_tag_version}.html"
+    outputfile="docs/${file}${file_tag_version}.html"
     redoc-cli bundle "schemas/${file}" --output ${outputfile} 
     doc_urls+=outputfile
 done
