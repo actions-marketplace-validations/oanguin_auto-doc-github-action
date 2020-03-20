@@ -25,6 +25,7 @@ echo "Configuring git"
 user_name=$1
 user_token=$2
 user_email=$3
+branch=$4
 
 git config --local user.name "${user_name}"
 git config --local user.email "${user_email}"
@@ -34,7 +35,7 @@ git add .
 git diff --cached HEAD --quiet || git commit -m "Generated documentation"
 
 echo "Pushing changes"
-git push https://${user_name}:${user_token}@github.com/${GITHUB_REPOSITORY}.git
+git push https://${user_name}:${user_token}@github.com/${GITHUB_REPOSITORY}.git HEAD:${branch}
 
 for doc_url in doc_urls
 do

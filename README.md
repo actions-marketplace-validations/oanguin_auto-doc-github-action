@@ -14,6 +14,9 @@ Where a release is done the generated `html` documents will have the version num
 ### `user-email`
 **Required** The user's email to be used for git related actions.
 
+### `branch`
+**Required** The branch where the generated documentation should be pushed.
+
 ## Output Parameters 
 
 ## Output
