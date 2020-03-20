@@ -14,6 +14,9 @@ Where a release is done the generated `html` documents will have the version num
 ### `user-email`
 **Required** The user's email to be used for git related actions.
 
+### `branch`
+**Required** The branch where the generated documentation should be pushed.
+
 ## Output Parameters 
 
 ## Output
@@ -34,6 +37,10 @@ jobs:
     steps:
       - name: Get the sources
         uses: actions/checkout@v2
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
       - name: Generate open api specifications
         id: generate-doc
         uses: ./
@@ -41,6 +48,7 @@ jobs:
           user-name: ${{ secrets.BOT_USERNAME}}
           user-token: ${{ secrets.BOT_PASSWORD}}
           user-email: ${{ secrets.BOT_EMAIL}}
+          branch: ${{ steps.extract_branch.outputs.branch }}
       - name: Print the URL for generate documentation
         if: steps.generate-doc.outputs.generated-doc-url != ''
         run: echo ${{ steps.generate-doc.outputs.generated-doc-url}}

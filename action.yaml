@@ -21,6 +21,7 @@ runs:
     - ${{inputs.user-name}}
     - ${{inputs.user-token}}
     - ${{inputs.user-email}}
+    - ${{inputs.branch}}
 branding:
     color: blue
     icon: book-open
