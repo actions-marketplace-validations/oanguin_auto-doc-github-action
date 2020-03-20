@@ -1,6 +1,7 @@
 name: Test
 on: 
   release:
+    published:
 jobs:
   test:
     name: Test
