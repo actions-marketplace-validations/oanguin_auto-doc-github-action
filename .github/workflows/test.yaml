@@ -1,6 +1,7 @@
 name: Test
 on: 
   release:
+    published:
 jobs:
   test:
     name: Test
@@ -19,7 +20,7 @@ jobs:
           user-name: ${{ secrets.BOT_USERNAME}}
           user-token: ${{ secrets.BOT_PASSWORD}}
           user-email: ${{ secrets.BOT_EMAIL}}
-          branch: ${{ steps.extract_branch.outputs.branch }}
+          branch: master
       - name: Print the URL for generate documentation
         if: steps.generate-doc.outputs.generated-doc-url != ''
         run: echo ${{ steps.generate-doc.outputs.generated-doc-url}}
