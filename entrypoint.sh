@@ -38,4 +38,9 @@ done
 
 echo "::set-output name=generated-doc-url::${repo_url}/docs"
 
+if [ $? -ne 0 ];
+    echo "::error::Failed to create documents"
+    exit 1
+fi
+
 exit 0
