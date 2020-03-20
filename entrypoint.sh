@@ -11,7 +11,7 @@ doc_urls=()
 for f in schemas/*
 do
     file="$(basename -- $f)"
-    outputfile="docs/${file%.*}${file_tag_version}.html"
+    outputfile="docs/${file%.*}.${file_tag_version}.html"
 
     echo "file tag version ${file_tag_version}"
 
