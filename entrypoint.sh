@@ -12,13 +12,18 @@ for f in schemas/*
 do
     file="$(basename -- $f)"
     outputfile="docs/${file%.*}${file_tag_version}.html"
+
+    if [ file_tag_version -ne "" ]; then
+        sed -E -i "s/v[0-9]+\.[0-9]+\.[0-9]+/v${VERSION}/g" "schemas/${file}"
+    fi
+
     redoc-cli bundle "schemas/${file}" --output ${outputfile} 
     doc_urls+=outputfile
 done
 
 echo "Configuring git"
 user_name=$1
-user_password=$2
+user_token=$2
 user_email=$3
 
 git config --local user.name "${user_name}"
@@ -29,7 +34,7 @@ git add .
 git diff --cached HEAD --quiet || git commit -m "Generated documentation"
 
 echo "Pushing changes"
-git push https://${user_name}:${user_password}@github.com/${GITHUB_REPOSITORY}.git
+git push https://${user_name}:${user_token}@github.com/${GITHUB_REPOSITORY}.git
 
 for doc_url in doc_urls
 do

@@ -12,7 +12,7 @@ jobs:
         uses: ./
         with:
           user-name: ${{ secrets.BOT_USERNAME}}
-          user-password: ${{ secrets.BOT_PASSWORD}}
+          user-token: ${{ secrets.BOT_PASSWORD}}
           user-email: ${{ secrets.BOT_EMAIL}}
       - name: Print the URL for generate documentation
         if: steps.generate-doc.outputs.generated-doc-url != ''

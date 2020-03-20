@@ -5,19 +5,22 @@ inputs:
   user-name: 
     decription: "The user's name to be used for git related actions."
     required: true
-  user-password:
-    description: "The user's password or token to be used for git related actions"
+  user-token:
+    description: "The user's token or token to be used for git related actions"
     required: true
   user-email:
     decription: "The user's email to be used for git related actions."
     required: true
 outputs:
   generated-doc-url:
-    decription: 'The path to the newly generated document'
+    decription: 'The relative path to the newly generated documents'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{inputs.user-name}}
-    - ${{inputs.user-password}}
+    - ${{inputs.user-token}}
     - ${{inputs.user-email}}
+branding:
+    color: blue
+    icon: book-open
