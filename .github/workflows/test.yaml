@@ -1,8 +1,5 @@
 name: Test
-on:
-  push:
-    branches:
-      - master
+on: [push]
 jobs:
   test:
     name: Test
@@ -11,10 +8,12 @@ jobs:
       - name: Get the sources
         uses: actions/checkout@v2
       - name: Generate open api specifications
-        uses: ./
         id: generate-doc
+        uses: ./
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Print the URL for geenerate documentation
+          user-name: ${{ secrets.BOT_USERNAME}}
+          user-token: ${{ secrets.BOT_PASSWORD}}
+          user-email: ${{ secrets.BOT_EMAIL}}
+      - name: Print the URL for generate documentation
         if: steps.generate-doc.outputs.generated-doc-url != ''
         run: echo ${{ steps.generate-doc.outputs.generated-doc-url}}
