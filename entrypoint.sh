@@ -13,7 +13,7 @@ do
     file="$(basename -- $f)"
     outputfile="docs/${file%.*}${file_tag_version}.html"
 
-    if [ file_tag_version -ne "" ]; then
+    if [ ! -z "$file_tag_version"]; then
         sed -E -i "s/v[0-9]+\.[0-9]+\.[0-9]+/v${VERSION}/g" "schemas/${file}"
     fi
 
